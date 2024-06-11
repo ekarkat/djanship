@@ -1,8 +1,7 @@
 from django import forms
-
-from .models import UserProfile
 from django.contrib.auth.models import User
 
+from .models import UserProfile
 
 
 # Register From
@@ -46,11 +45,12 @@ class RegisterForm(forms.ModelForm):
             'address': forms.Textarea(attrs={'class': 'form-control'}),
             'image': forms.FileInput(attrs={'class': 'form-control'})
         }
+    field_order = ['username', 'email', 'password', 'confirm_password', 'first_name', 'last_name', 'phone', 'address', 'image']
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Explicitly set the order of the fields
-        self.order_fields(['username', 'password', 'confirm_password', 'email', 'first_name', 'last_name', 'phone', 'address', 'image'])
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     # Explicitly set the order of the fields
+    #     self.order_fields(['username', 'password', 'confirm_password', 'email', 'first_name', 'last_name', 'phone', 'address', 'image'])
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -91,3 +91,35 @@ class RegisterForm(forms.ModelForm):
             image=self.cleaned_data.get('image')
         )
         return userprofile
+
+
+# Login Form
+class LoginForm(forms.Form):
+    # login form
+    username = forms.CharField(
+        max_length=50,
+        required=True,
+        label='Username',
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    password = forms.CharField(
+        max_length=50,
+        required=True,
+        label='Password',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+    )
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        if not User.objects.filter(username=username).exists():
+            raise forms.ValidationError('This username is not registered')
+        return username
+
+    def clean_password(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+        if User.objects.filter(username=username).exists():
+            user = User.objects.get(username=username)
+            if not user.check_password(password):
+                raise forms.ValidationError('Invalid password')
+        return password

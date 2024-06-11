@@ -112,6 +112,7 @@ class LoginForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if not User.objects.filter(username=username).exists():
+            print('This username is not registered')
             raise forms.ValidationError('This username is not registered')
         return username
 
@@ -121,5 +122,6 @@ class LoginForm(forms.Form):
         if User.objects.filter(username=username).exists():
             user = User.objects.get(username=username)
             if not user.check_password(password):
+                print('Invalid password')
                 raise forms.ValidationError('Invalid password')
         return password

@@ -21,6 +21,7 @@ def login_view(request):
     # login view
     if request.user.is_authenticated:
         return redirect('home')
+    login_form = LoginForm()
     if request.method == 'POST':
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
@@ -30,11 +31,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 return redirect('home')
-            else:
-                login_form.add_error(None, 'Invalid username or password')
-    login_form = LoginForm()
     context = {'form': login_form, 'title': 'Register'}
-
     return render(request, 'login.html', context)
 
 

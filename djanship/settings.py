@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-0sn2oo2xcu_x4@bus*o!uxadqfqakx4#tyy1na9+o!n&_c%eo)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'administration',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +77,12 @@ WSGI_APPLICATION = 'djanship.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'djanship',                      
+        'USER': 'djan',
+        'PASSWORD': 'djan',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

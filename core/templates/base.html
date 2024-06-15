@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Djan Ship{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'basic.css' %}">
+    <link rel="stylesheet" href="{% static 'nav.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap" rel="stylesheet">
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="page-container">
+       <nav>
+            <img src="{% static 'footer-logo.png' %}" width="190" height="60">
+            <div class="navbar-links">
+                <a href="#">Home</a>
+                <a href="#">Services</a>
+                <a href="#">Menu</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="account">
+                <a href="#">Login</a>
+                <a href="#">Register</a>
+            </div>
+       </nav>
+
+        <div class="content-wrap">
+           <!-- all other page content -->
+            {% block content %}{% endblock %}
+        </div>
+        <footer class="footer">
+            <div class="footer-h1">
+                <div>
+                    <img src="{% static 'footer1.jpg' %}" alt="Instagram">             
+                </div>
+                <div>
+                    <img src="{% static 'footer2.jpg' %}" alt="Instagram">             
+                </div>
+                <div>
+                    <img src="{% static 'footer3.jpg' %}" alt="Instagram">             
+                </div>
+            </div>
+            <div class="footer-h2">
+                <div class="footer-h2-section1">
+                    <img src="{% static 'footer-logo.png' %}" width="90" height="40" >
+
+                </div>
+                <div class="footer-h2-section2">
+                    <p class="footer-section-titles">Find us on social media</p>
+                    <div class="footer-h2-social-media">
+                        <img src="{% static 'ig.jpg' %}" width="40" height="40" >
+                        <img src="{% static 'fb.jpg' %}" width="40" height="40" >
+                        <img src="{% static 'x.jpg' %}" width="40" height="40" >
+                        <img src="{% static 'ln.jpg' %}" width="40" height="40" >
+                    </div>
+                </div>
+                <div class="footer-h2-section3">
+                    <p class="footer-section-titles">COMPANY</p>
+                    <p>About us</p>
+                    <p>Media</p>
+                    <p>Team</p>
+                    <p>Warranty</p>
+                    <p>Privacy Policy</p>
+
+                </div>
+                <div class="footer-h2-section4">
+                    <p class="footer-section-titles">USEFUL LINKS</p>
+                    <p>Contact us</p>
+                    <p>Register</p>
+                    <p>Team</p>
+                    <p>Infos</p>
+                </div>
+            </div>
+       </footer>
+    </div>
+</body>
+
+</html>

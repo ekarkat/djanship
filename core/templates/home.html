@@ -1,1 +1,40 @@
-welcome
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}DjanShip{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="section1">
+        <h2>Transport & logistic Solution</h2>
+        <h1><span>#1 Place</span> For YOUR Logistic Solution</h1>
+    </div>
+    <div class="section2">
+        <div class="section2-part1">
+            <img src="{% static 'section2-part1.jpg' %}" width="300px" height="300px">
+            <div>
+                <p>Shipping Guarantee</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>    
+            </div>
+        </div>
+
+        <div class="section2-part2">
+            <img src="{% static 'section2-part2.jpg' %}" width="300px" height="300px">
+            <div>
+                <p>Shipping Guarantee</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>    
+            </div>
+        </div>
+
+        <div class="section2-part3">
+            <img src="{% static 'section2-part3.png' %}" width="300px" height="300px">
+            <div>
+                <p>Shipping Guarantee</p>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>    
+            </div>
+        </div>
+    </div>
+{% endblock %}

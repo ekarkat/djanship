@@ -8,7 +8,7 @@
     background-repeat: no-repeat;
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1550px) {
     .section1 {
         display: flex;
         flex-direction: column;
@@ -17,6 +17,17 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position: 0 -160px;
+    }
+}
+
+@media (min-width: 1420px) and (max-width: 1549px) {
+    .section1 {
+        display: flex;
+        flex-direction: column;
+        height: 80vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 0px calc(-5vw);
     }
 }
 
@@ -92,4 +103,67 @@
         align-self: baseline;
         margin-left: 0;
     }
+}
+
+
+
+/* --------------- ANIMATION -------------------------- */
+
+@keyframes slidleft {
+    from {
+        transform: translateX(200px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+@keyframes slidright {
+    from {
+        transform: translateX(-200px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes scale {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(100px);
+    }
+}
+
+
+.scale {
+    animation: scale;
+}
+
+.slidleft {
+    animation: slidleft 1.5s ease-in;
+}
+.slidright {
+    animation: slidright 2s ease-in;
+}
+
+
+/*     ----------------------------- Animation tools ---------------------------- */
+
+.linear {
+    animation-timing-function: linear;
+}
+
+.dur-3s {
+    animation-duration: 3s;
+}
+
+.dur-2s {
+    animation-duration: 2s;
+}
+
+.ease-in {
+    animation-timing-function: ease-in;
 }

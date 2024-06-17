@@ -17,13 +17,19 @@
             <img src="{% static 'footer-logo.png' %}" width="190" height="60">
             <div class="navbar-links">
                 <a href="#">Home</a>
-                <a href="#">Services</a>
+                <div class="dropdown">
+                    <p class="dropbtn">Services &#11167</p>
+                    <div class="dropdown-content">
+                      <a href="#">Track your Order</a>
+                      <a href="#">Send a package</a>
+                    </div>
+                  </div>
                 <a href="#">Menu</a>
                 <a href="#">Contact</a>
             </div>
             <div class="account">
-                <a href="#">Login</a>
-                <a href="#">Register</a>
+                <a href="#" class="login">Login</a>
+                <a href="#" class="login register">Register</a>
             </div>
        </nav>
 

@@ -9,11 +9,11 @@
 
 {% block content %}
     <div class="section1">
-        <h2 class="scale ease-in dur-2s">Transport & logistic Solution</h2>
-        <h1 class="scale ease-in dur-2s"><span>#1 Place</span> For YOUR Logistic Solution</h1>
+        <h2 class="fade linear dur-3s">Transport & logistic Solution</h2>
+        <h1 class="fade ease-in dur-3s "><span>#1 Place</span> For YOUR Logistic Solution</h1>
     </div>
-    <div class="section2">
-        <div class="section2-part1 slidright">
+    <div class="section2" id="section2">
+        <div class="section2-part1 hidden">
             <img src="{% static 'section2-part1.jpg' %}" width="300px" height="300px">
             <div>
                 <p>Shipping Guarantee</p>
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="section2-part2 slidleft">
+        <div class="section2-part2 hidden">
             <img src="{% static 'section2-part2.jpg' %}" width="300px" height="300px">
             <div>
                 <p>Shipping Guarantee</p>
@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <div class="section2-part3 scale linear dur-3s">
+        <div class="section2-part3 hidden dely-3s">
             <img src="{% static 'section2-part3.png' %}" width="300px" height="300px">
             <div>
                 <p>Shipping Guarantee</p>
@@ -37,4 +37,26 @@
             </div>
         </div>
     </div>
+
+
+    <script>
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const section = entry.target;
+                // console.log(entry);
+                if (entry.isIntersecting) {
+                    section.classList.add('show');
+                } else {
+                    // section.classList.remove('slidleft');
+                }
+            });
+        });
+
+        const sections = document.querySelectorAll('.section2 > div');
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+    </script>
 {% endblock %}

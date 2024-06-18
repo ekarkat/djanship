@@ -1,5 +1,6 @@
 :root {
-    --main-color: #8D2423;
+    --main-color: #EE5335;
+    --sec-color: #eb2d2d;
   }
 * {
     margin: 0;
@@ -85,7 +86,7 @@
     margin-top: 0.5rem;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 1000px) {
     .page-container {
         position: relative;
         /* min-height: 99.1vh; */

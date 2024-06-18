@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{% extends "core/base.html" %}
 {% load static %}
 
 {% block title %}DjanShip{% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link rel="stylesheet" href="{% static 'core/home.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -14,7 +14,7 @@
     </div>
     <div class="section2" id="section2">
         <div class="section2-part1 hidden">
-            <img src="{% static 'section2-part1.jpg' %}" width="300px" height="300px">
+            <img src="{% static 'core/section2-part1.jpg' %}" width="300px" height="300px">
             <div>
                 <p>Shipping Guarantee</p>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>    
@@ -22,15 +22,15 @@
         </div>
 
         <div class="section2-part2 hidden">
-            <img src="{% static 'section2-part2.jpg' %}" width="300px" height="300px">
+            <img src="{% static 'core/section2-part2.jpg' %}" width="300px" height="300px">
             <div>
                 <p>Shipping Guarantee</p>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>    
             </div>
         </div>
 
-        <div class="section2-part3 hidden dely-3s">
-            <img src="{% static 'section2-part3.png' %}" width="300px" height="300px">
+        <div class="section2-part3 hidden dely-2s">
+            <img src="{% static 'core/section2-part3.png' %}" width="300px" height="300px">
             <div>
                 <p>Shipping Guarantee</p>
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>    
@@ -41,7 +41,7 @@
 
     <script>
 
-        const observer = new IntersectionObserver(entries => {
+        const observer = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 const section = entry.target;
                 // console.log(entry);
@@ -51,7 +51,11 @@
                     // section.classList.remove('slidleft');
                 }
             });
-        });
+        },
+        {
+            threshold: 0.4
+        }
+    );
 
         const sections = document.querySelectorAll('.section2 > div');
         sections.forEach(section => {

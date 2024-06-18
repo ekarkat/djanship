@@ -4,6 +4,7 @@ from administration import views
 
 
 # URL configuration for administration app.
+app_name = 'administration'
 
 urlpatterns = [
     path('register/', views.register, name='register'),

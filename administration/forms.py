@@ -28,14 +28,13 @@ class RegisterForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ['email', 'first_name', 'last_name', 'phone', 'address', 'image']
+        fields = ['email', 'first_name', 'last_name', 'phone', 'address']
         labels = {
             'email': 'Email',
             'first_name': 'First Name',
             'last_name': 'Last Name',
             'phone': 'Phone',
             'address': 'Address',
-            'image': 'Image'
         }
         widgets = {
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
@@ -43,9 +42,8 @@ class RegisterForm(forms.ModelForm):
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
             'address': forms.Textarea(attrs={'class': 'form-control'}),
-            'image': forms.FileInput(attrs={'class': 'form-control'})
         }
-    field_order = ['username', 'email', 'password', 'confirm_password', 'first_name', 'last_name', 'phone', 'address', 'image']
+    field_order = ['username', 'email', 'password', 'confirm_password', 'first_name', 'last_name', 'phone', 'address']
 
     # def __init__(self, *args, **kwargs):
     #     super().__init__(*args, **kwargs)

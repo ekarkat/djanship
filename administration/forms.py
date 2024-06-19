@@ -31,8 +31,8 @@ class RegisterForm(forms.ModelForm):
         label='State',
         widget=forms.Select(attrs={'class': 'form-control', 'id': 'state-select'})
     )
-    city = forms.ModelChoiceField(
-        queryset=City.objects.none(),
+    city = forms.CharField(
+        max_length=50,
         required=True,
         label='City',
         widget=forms.Select(attrs={'class': 'form-control', 'id': 'city-select'})
@@ -85,13 +85,20 @@ class RegisterForm(forms.ModelForm):
         password = self.cleaned_data.get('password')
         username = self.cleaned_data.get('username')
         user = User.objects.create_user(username=username, password=password)
+        state_name = self.cleaned_data.get('state')
+        city_id = self.cleaned_data.get('city')
+
+        state = State.objects.get(name=state_name)
+        city = City.objects.get(id=city_id)
+
         userprofile = UserProfile.objects.create(
             user=user,
             email=self.cleaned_data.get('email'),
             first_name=self.cleaned_data.get('first_name'),
             last_name=self.cleaned_data.get('last_name'),
             phone=self.cleaned_data.get('phone'),
-            image=self.cleaned_data.get('image')
+            state=state,
+            city=city
         )
         return userprofile
 

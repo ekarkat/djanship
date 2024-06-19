@@ -14,7 +14,7 @@ def register(request):
             register_form.save()
             return redirect('home')
     context = {'form': register_form, 'title': 'Register'}
-    return render(request, 'register.html', context)
+    return render(request, 'administration/register.html', context)
 
 
 def login_view(request):
@@ -32,7 +32,7 @@ def login_view(request):
                 login(request, user)
                 return redirect('home')
     context = {'form': login_form, 'title': 'Register'}
-    return render(request, 'login.html', context)
+    return render(request, 'administration/login.html', context)
 
 
 def logout_view(request):

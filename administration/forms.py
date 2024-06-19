@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from .models import UserProfile
+from .models import UserProfile, State, City
 
 
 # Register From
@@ -25,30 +25,36 @@ class RegisterForm(forms.ModelForm):
         label='Confirm Password',
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
+    state = forms.ModelChoiceField(
+        queryset=State.objects.all().exclude(id=1),
+        required=True,
+        label='State',
+        widget=forms.Select(attrs={'class': 'form-control', 'id': 'state-select'})
+    )
+    city = forms.ModelChoiceField(
+        queryset=City.objects.none(),
+        required=True,
+        label='City',
+        widget=forms.Select(attrs={'class': 'form-control', 'id': 'city-select'})
+    )
 
     class Meta:
         model = UserProfile
-        fields = ['email', 'first_name', 'last_name', 'phone', 'address']
+        fields = ['email', 'first_name', 'last_name', 'phone']
         labels = {
             'email': 'Email',
             'first_name': 'First Name',
             'last_name': 'Last Name',
             'phone': 'Phone',
-            'address': 'Address',
         }
         widgets = {
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
-            'address': forms.Textarea(attrs={'class': 'form-control'}),
         }
-    field_order = ['username', 'email', 'password', 'confirm_password', 'first_name', 'last_name', 'phone', 'address']
+    field_order = ['username', 'email', 'password', 'confirm_password', 'first_name', 'last_name', 'phone', 'state']
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     # Explicitly set the order of the fields
-    #     self.order_fields(['username', 'password', 'confirm_password', 'email', 'first_name', 'last_name', 'phone', 'address', 'image'])
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -85,7 +91,6 @@ class RegisterForm(forms.ModelForm):
             first_name=self.cleaned_data.get('first_name'),
             last_name=self.cleaned_data.get('last_name'),
             phone=self.cleaned_data.get('phone'),
-            address=self.cleaned_data.get('address'),
             image=self.cleaned_data.get('image')
         )
         return userprofile

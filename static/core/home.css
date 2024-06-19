@@ -152,6 +152,8 @@
     /* animation: scale 3s; */
 }
 
+/* section2 animation */
+
 .hidden:nth-child(2) {
     transition-delay: 0.7s;
 }

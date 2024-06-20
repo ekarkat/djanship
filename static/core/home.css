@@ -196,3 +196,23 @@
     animation-duration: 6s;
 }
 
+.alert-success {
+    background-color: rgba(96, 223, 124, 0.842);
+    color: white;
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+.alert-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 10px;
+}

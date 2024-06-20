@@ -59,6 +59,10 @@ nav img {
     padding-top: 2%;
 }
 
+.logout {
+    padding-top: 4px;
+}
+
 @media (max-width: 900px) {
     .register {
         display: none;

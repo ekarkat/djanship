@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 
 from administration.forms import RegisterForm, LoginForm
@@ -12,6 +14,7 @@ def register(request):
         register_form = RegisterForm(request.POST, request.FILES)
         if register_form.is_valid():
             register_form.save()
+            messages.success(request, 'Your account has been created successfully')
             return redirect('home')
     context = {'form': register_form, 'title': 'Register'}
     return render(request, 'administration/register.html', context)
@@ -30,7 +33,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                return redirect('administration:dashbord')
     context = {'form': login_form, 'title': 'Register'}
     return render(request, 'administration/login.html', context)
 
@@ -39,3 +42,8 @@ def logout_view(request):
     # logout view
     logout(request)
     return redirect('home')
+
+
+def dashbord(request):
+    # profile view
+    return render(request, 'administration/dashbord.html')

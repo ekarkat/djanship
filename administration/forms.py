@@ -55,7 +55,6 @@ class RegisterForm(forms.ModelForm):
         }
     field_order = ['username', 'email', 'password', 'confirm_password', 'first_name', 'last_name', 'phone', 'state']
 
-
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
@@ -122,7 +121,6 @@ class LoginForm(forms.Form):
     def clean_username(self):
         username = self.cleaned_data.get('username')
         if not User.objects.filter(username=username).exists():
-            print('This username is not registered')
             raise forms.ValidationError('This username is not registered')
         return username
 
@@ -135,3 +133,6 @@ class LoginForm(forms.Form):
                 print('Invalid password')
                 raise forms.ValidationError('Invalid password')
         return password
+
+
+# Profile Pandel Form

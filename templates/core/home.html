@@ -8,6 +8,15 @@
 {% endblock %}
 
 {% block content %}
+    {% if messages %}
+    <div class="alert-message">
+        {% for message in messages %}
+            <div class="alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
     <div class="section1">
         <h2 class="fade linear dur-3s">Transport & logistic Solution</h2>
         <h1 class="fade ease-in dur-3s "><span>#1 Place</span> For YOUR Logistic Solution</h1>

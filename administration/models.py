@@ -9,6 +9,7 @@ class State(BaseModel):
     def __str__(self) -> str:
         return self.name
 
+
 class City(BaseModel):
     name = models.CharField(max_length=50)
     state = models.ForeignKey(State, on_delete=models.CASCADE, related_name='cities', blank=False, null=False)
@@ -16,30 +17,17 @@ class City(BaseModel):
     def __str__(self) -> str:
         return self.name
 
-class Address(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='addresses')
-    address = models.TextField()
-    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='addresses', blank=False, null=False)
-    zipcode = models.CharField(max_length=6, blank=False, null=False, default='00000')
-
-    @property
-    def state(self):
-        return self.city.state
-    @property
-    def zip_code(self):
-        return self.city.zip_code
-
-    def __str__(self):
-        return self.address + ' - ' + self.city + ' - ' + self.state 
 
 class UserProfile(BaseModel):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='userprofile')
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    phone = models.CharField(max_length=15, blank=True, null=True)
+    phone = models.CharField(max_length=15, blank=False, null=False)
     state = models.ForeignKey(State, related_name='users', on_delete=models.SET_DEFAULT, default=1)
     city = models.ForeignKey(City, related_name='users', on_delete=models.SET_DEFAULT, default=2)
+    address = models.TextField(blank=True, null=True)
+    zipcode = models.CharField(max_length=6, blank=True, null=True, default='00000')
     image = models.ImageField(upload_to='profile_images', blank=True, null=True)
 
     def __str__(self):
